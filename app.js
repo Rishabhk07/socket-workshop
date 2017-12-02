@@ -15,6 +15,10 @@ const path = require('path');
 
 io.on('connection', function (socket) {
     console.log("a new connection has connected");
+    socket.on('new_msg', function (data) {
+        console.log(data);
+        io.emit('chat', data);
+    })
 })
 
 app.use('/', express.static(path.join(__dirname, "/public_static")));

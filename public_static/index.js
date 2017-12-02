@@ -9,6 +9,10 @@ $(function () {
    var chat = $('#chat');
 
    sendBtn.click(function () {
-
+        socket.emit('new_msg',msg.val());
    })
+
+    socket.on('chat', function (data) {
+        chat.append("<li>"+ data+"</li>")
+    })
 });
